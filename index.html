@@ -138,6 +138,26 @@
                 gap: 10px; /* Closer buttons */
             }
         }
+
+        #top-link-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #ff9999;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            z-index: 200;
+        }
+
+        #top-link-btn:hover {
+            transform: scale(1.05);
+            background-color: #ff8080;
+        }
     </style>
 </head>
 <body>
@@ -145,12 +165,14 @@
     <!-- Floating hearts container -->
     <div id="hearts-container"></div>
 
+    <a id="top-link-btn" href="card2.html">Siguiente Sorpresa ➡️</a>
+
     <!-- Movement boundary for 'No' button -->
     <div id="boundary-box"></div>
 
     <div class="container" id="main-content">
         <img class="main-gif" src="https://media.tenor.com/aH6qp6K6lO4AAAAj/apple-apple-cat.gif" alt="Cute Cat">
-        <h1>Serías mi San Valentín mi Arlette?</h1>
+        <h1>Serías mi San Valentín mi corazón?</h1>
         <div class="buttons">
             <button id="yesBtn">Sí</button>
             <button id="noBtn">No</button>
