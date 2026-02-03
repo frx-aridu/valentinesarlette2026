@@ -117,6 +117,27 @@
             border-radius: 10px;
             margin-bottom: 10px;
         }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem; /* Smaller text for mobile */
+            }
+            .main-gif {
+                width: 120px; /* Smaller cat gif */
+            }
+            button {
+                padding: 10px 20px; /* Smaller buttons */
+                font-size: 1rem;
+            }
+            #boundary-box {
+                width: 90vw; /* Wider boundary for narrow screens */
+                height: 60vh; /* Shorter boundary to avoid URL bars */
+            }
+            .buttons {
+                gap: 10px; /* Closer buttons */
+            }
+        }
     </style>
 </head>
 <body>
