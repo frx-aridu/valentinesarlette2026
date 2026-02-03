@@ -129,6 +129,7 @@
 
     <!-- Game Canvas -->
     <canvas id="gameCanvas"></canvas>
+    <img id="bossGif" src="https://media.tenor.com/P2l5BjshgRIAAAAi/cat-meme-gato.gif" style="position: absolute; display: none; pointer-events: none; z-index: 5;">
 
     <!-- Main UI Layer -->
     <div id="ui-layer">
@@ -306,8 +307,10 @@
         // Entities
         let player = { x: 0, y: 0, size: 15, alive: true, speed: 8 };
         let bullets = []; 
-        let boss = { x: 0, y: 0, width: 200, height: 100, active: true };
+        let boss = { x: 0, y: 0, width: 150, height: 150, active: true }; // Adjusted size for the GIF
         
+        const bossGif = document.getElementById('bossGif');
+
         // Input Tracking
         let keys = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, w: false, a: false, s: false, d: false };
         let mouseX = window.innerWidth / 2;
@@ -350,6 +353,7 @@
 
         function startGame() {
             canvas.style.display = 'block';
+            bossGif.style.display = 'block';
             resize();
             gameRunning = true;
             player.alive = true;
@@ -449,6 +453,7 @@
             else {
                 gameRunning = false;
                 canvas.style.display = 'none';
+                bossGif.style.display = 'none';
                 finalScreen.style.display = 'flex';
                 document.body.style.cursor = 'auto';
             }
@@ -487,19 +492,18 @@
             ctx.shadowBlur = 0;
 
             // Draw Boss
-            ctx.fillStyle = C_BOSS;
-            ctx.shadowBlur = 20;
-            ctx.shadowColor = C_HAZARD;
             const pulse = 1 + Math.sin(frameCount * 0.1) * 0.1;
             const bW = boss.width * pulse;
             const bH = boss.height * pulse;
-            ctx.fillRect(boss.x + (boss.width - bW)/2, boss.y, bW, bH);
-            
-            // Boss Face
-            ctx.fillStyle = "#fff";
-            ctx.fillRect(boss.x + (boss.width - bW)/2 + 40, boss.y + 40, 20, 20 * (1/pulse)); 
-            ctx.fillRect(boss.x + (boss.width - bW)/2 + bW - 60, boss.y + 40, 20, 20 * (1/pulse));
+            const bX = boss.x + (boss.width - bW) / 2;
+            const bY = boss.y;
 
+            // Update Boss GIF position and size
+            bossGif.style.left = bX + 'px';
+            bossGif.style.top = bY + 'px';
+            bossGif.style.width = bW + 'px';
+            bossGif.style.height = bH + 'px';
+            
             runLevelLogic();
 
             // Handle Projectiles
@@ -558,6 +562,7 @@
             gameRunning = false;
             gameOverScreen.style.display = 'flex';
             canvas.style.display = 'none';
+            bossGif.style.display = 'none';
             document.body.style.cursor = 'auto';
         }
 
@@ -565,6 +570,7 @@
             gameRunning = false;
             gameOverScreen.style.display = 'none';
             canvas.style.display = 'none';
+            bossGif.style.display = 'none';
             uiLayer.style.display = 'flex';
             introContainer.classList.remove('hidden');
             readyContainer.style.display = 'none';
